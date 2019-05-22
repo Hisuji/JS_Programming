@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Unica One', cursive;
+    text-align: center;
+    color: #4b4b4b;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: default;
+}
+
+.top_ul {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.top_ul > li {
+    display: inline-block;
+    padding: 5px;
+    color: #b33939;
+}
+
+.top_ul > li > a {
+    color: #b33939;
+}
+
+.top_ul > li > a:hover, .top_ul > li:hover {
+    color: #ffcccc;
+    transition: .5s linear;
+}
+
+.bgList {
+    position: absolute;
+    right: 110px;
+    top: 45px;
+    background-color: #b33939;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    display: none;
+    opacity: 0.7;
+}
+
+.hiding {
+    display: none;
+}
+
+.showing {
+    display: block;
+}
+
+.bgList > ul {
+    padding: 0;
+}
+
+.bgList > ul > li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    color: black;
+}
+
+.bgList > ul > li:hover {
+    cursor: pointer;
+}
+
+/* 배경색 */
+.sourLemon {background-color: #ffeaa7;}
+.firstDate {background-color: #fab1a0;}
+.pinkGlamour {background-color: #ff7675;}
+.brightYarrow {background-color: #fdcb6e;}
+.orangeVille {background-color: #e17055;}
+.chiGong {background-color: #d63031;}
+
+.wrap {
+    background-color: #f7d794;
+    padding: 50px 0;
+    width: 100%;
+}
+
+#clock > h1 {
+    font-size: 4em;
+    margin: 0;
+
+}
+
+#clock > h2 {
+    font-size: 3em;
+}
+
+.searchForm > input {
+    background-color: white;
+    width: 300px;
+}
+
+#weather > .temp {
+    display: inline;
+    font-size: 3em;
+}
+
