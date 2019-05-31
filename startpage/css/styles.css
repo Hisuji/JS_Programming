@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Unica One', cursive;
+    font-family: 'Fira Sans', sans-serif;
     text-align: center;
     color: #4b4b4b;
 }
@@ -104,3 +104,23 @@ a {
     font-size: 3em;
 }
 
+#todoList {
+    margin-top: 5px;
+}
+
+.todoGroup {
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 0;
+    background-color: #f1f2f6;
+    width: 300px;
+    text-align: left;
+}
+
+.todoGroup:hover {
+    cursor: pointer;
+}
+
+#todoList i {
+    margin-right: 10px;
+}
