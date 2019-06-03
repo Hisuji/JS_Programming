@@ -5,14 +5,15 @@
 - URL : http://sujikim.dothome.co.kr/
 - 구현 기능
   - 오늘 날짜 (년/월/일)
-  - 현재 시간(시:분:초)
+  - 현재 시간(시:분)
   - 검색(네이버로 연결)
   - 배경색 변경 
   - 위치 기반 날씨 api ( openweathermap 사용 )
-    - 보안 설정이 되어있지 않은 사이트에서는 HTML5 Geoloaction api를 사용할 수 없다.
+    - 보안 설정이 되어있지 않은 사이트에서는 HTML5 Geolocation api를 사용할 수 없다.
   - 투두리스트
-  	- checked/ uncheckd
-  	- 미구현) checkde 유지 + 삭제
+  	- checked/ unchecked 기능
+  	  - 새로고침 시에도 체크 사항 유지
+  	- 구현 예정 기능) 삭제
 
  <img src="https://user-images.githubusercontent.com/47530310/58156584-652cc800-7cb1-11e9-9f19-9072d4e345e6.PNG" alt="위치설정전" width="50%">
 ------

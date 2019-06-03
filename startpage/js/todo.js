@@ -11,16 +11,21 @@ function check(event) {
     if (targetName === "LI" || targetName === "SPAN") {
         const checkedIcon = (targetName === "LI") ? event.target.firstChild : event.target.previousSibling;
         const changeText = (targetName === "LI") ? event.target : event.target.parentNode;
+        let originId = changeText.id;
+        let subId = Number(originId.substring(2));
         const currentCN = checkedIcon.className;
 
         if (currentCN === "far fa-square") {
             checkedIcon.className = "far fa-check-square";
             changeText.style.textDecoration = "line-through";
-            
-        } else {
+            toDos[subId - 1].checked = 1;
+        } else if(currentCN === "far fa-check-square") {
             checkedIcon.className = "far fa-square";
             changeText.style.textDecoration = "none";
+            toDos[subId - 1].checked = 0;
         }
+        toDos = toDos;
+        saveTodos();
     }
 }
 
@@ -34,21 +39,25 @@ function addTodos(text) {
     const icon = document.createElement("i");
     //length - 0부터 시작!
     const li_id = toDos.length + 1;
+    const stringId = 'id' + li_id;
     todoGroup.appendChild(li);
     icon.className = "far fa-square";
     li.addEventListener("click", check);
     li.appendChild(icon);
     li.appendChild(span);
     span.style.width = "100%";
-    li.id = li_id;
+    li.id = stringId;
     span.innerText = text;
+
+    let checked;
 
     const lists = {
         listValue: text,
-        id: li_id
+        id: li_id,
+        checked: checked
     };
+
     toDos.push(lists);
-    saveTodos();
 }
 
 function listSubmit(event) {
@@ -56,6 +65,17 @@ function listSubmit(event) {
     const todoValue = todoInput.value;
     addTodos(todoValue);
     todoInput.value = "";
+    saveTodos();
+}
+
+function done(id, checkValue) {
+    if (checkValue === 1) {
+        const checkList = todoGroup.querySelector(`#id${id}`);
+        const childIcon = checkList.firstChild;
+        childIcon.className = "far fa-check-square";
+        checkList.style.textDecoration = "line-through";
+        toDos[id - 1].checked = 1;
+    }
 }
 
 function getTodos() {
@@ -64,6 +84,7 @@ function getTodos() {
         const parseList = JSON.parse(list);
         parseList.forEach(function (element) {
             addTodos(element.listValue);
+            done(element.id, element.checked);
         });
     }
 }
