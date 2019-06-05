@@ -124,3 +124,17 @@ a {
 #todoList i {
     margin-right: 10px;
 }
+
+#todoList .todoBtn {
+    position: absolute;
+    right: 10px;
+    background-color: #ffffff;
+    color: #e84118;
+    border: none;
+    cursor: pointer;
+}
+
+#todoList .todoBtn:hover {
+    background-color: #e84118;
+    color: #ffffff;
+}

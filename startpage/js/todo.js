@@ -6,6 +6,20 @@ const TODO_LIST = 'toDoList';
 
 let toDos = [];
 
+function deleteTodo(event) {
+    const clickBtn = event.target;
+    const selectTodo = clickBtn.parentNode;
+    todoGroup.removeChild(selectTodo);
+
+    //filter() > 리턴이 true인 요소만 모아서 새로운 배열을 만든다.
+    const renewalTodos = toDos.filter(function (restTodos) {
+        return restTodos.id !== Number(selectTodo.id.substring(2));
+    });
+
+    toDos = renewalTodos;
+    saveTodos();
+}
+
 function check(event) {
     const targetName = event.target.tagName;
     if (targetName === "LI" || targetName === "SPAN") {
@@ -19,7 +33,7 @@ function check(event) {
             checkedIcon.className = "far fa-check-square";
             changeText.style.textDecoration = "line-through";
             toDos[subId - 1].checked = 1;
-        } else if(currentCN === "far fa-check-square") {
+        } else if (currentCN === "far fa-check-square") {
             checkedIcon.className = "far fa-square";
             changeText.style.textDecoration = "none";
             toDos[subId - 1].checked = 0;
@@ -37,6 +51,7 @@ function addTodos(text) {
     const li = document.createElement("li");
     const span = document.createElement("span");
     const icon = document.createElement("i");
+    const delBtn = document.createElement("button");
     //length - 0부터 시작!
     const li_id = toDos.length + 1;
     const stringId = 'id' + li_id;
@@ -45,7 +60,11 @@ function addTodos(text) {
     li.addEventListener("click", check);
     li.appendChild(icon);
     li.appendChild(span);
-    span.style.width = "100%";
+    li.appendChild(delBtn);
+    li.style.position = "relative";
+    delBtn.innerText = "x";
+    delBtn.className = "todoBtn";
+    delBtn.addEventListener("click", deleteTodo);
     li.id = stringId;
     span.innerText = text;
 

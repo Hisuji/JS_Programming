@@ -13,7 +13,7 @@
   - 투두리스트
   	- checked/ unchecked 기능
   	  - 새로고침 시에도 체크 사항 유지
-  	- 구현 예정 기능) 삭제
+  	- 삭제 기능 
 
  <img src="https://user-images.githubusercontent.com/47530310/58156584-652cc800-7cb1-11e9-9f19-9072d4e345e6.PNG" alt="위치설정전" width="50%">
 ------
