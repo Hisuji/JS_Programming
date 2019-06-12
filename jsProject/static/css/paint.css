@@ -1,0 +1,63 @@
+@import "reset.css";
+
+body {
+    background-color: #f6f9fc;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* flex - 화면 크기에 상관없이 레이아웃 똑같이 유지 */
+    display: flex;
+    /* 배치될 방향 */
+    flex-direction: column;
+    /* 수직 방향 정렬 방식 */
+    align-items: center;
+    margin-top: 30px;
+}
+
+.canvas {
+    width: 700px;
+    height: 500px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #dfe6e9;
+    margin-bottom: 20px;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls_btns button {
+    all: unset;
+    cursor: pointer;
+    background-color: #f1f2f6;
+    padding: 5px 20px;
+    margin: 0 5px;
+    box-shadow: 2px 2px #dfe4ea;
+}
+
+.controls_btns button:active {
+    transform: scale(0.9);
+}
+
+.controls .controls_btns {
+    margin-bottom: 20px;
+}
+
+.controls .controls_colors {
+    display: flex;
+    justify-content: space-around;
+}
+
+.controls_color {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+.controls .controls_range {
+    margin-bottom: 20px;
+}
