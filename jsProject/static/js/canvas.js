@@ -1,13 +1,23 @@
+const groupColors = document.getElementById('jsColors');
+const color = document.getElementsByClassName('controls_color');
+const range = document.getElementById('brushRange');
+const mode = document.getElementById('jsMode');
+const erase = document.getElementById('jsErase');
+
 const canvas = document.getElementById('jsCanvas');
 canvas.width = 700;
 canvas.height = 500;
 
-const groupColors = document.getElementById('jsColors');
-const color = document.getElementsByClassName('controls_color');
 const ctx = canvas.getContext('2d');
 ctx.strokeStyle = groupColors.firstElementChild.style.backgroundColor;
-ctx.lineWidth = 2.5;
+ctx.lineWidth = range.value;
 
+const drawColor = document.querySelector('.select_color');
+drawColor.style.backgroundColor = groupColors.firstElementChild.style.backgroundColor;
+drawColor.style.width = "30px";
+drawColor.style.height = "30px";
+
+let filling = false;
 let painting = false;
 
 function stopPainting() {
@@ -35,17 +45,60 @@ function onMouseMove(event) {
     }
 }
 
+function handleRange(event) {
+    const rangeValue = event.target.value;
+    ctx.lineWidth = rangeValue;
+    drawColor.style.width = rangeValue * 10 + "px";
+    drawColor.style.height = rangeValue * 10 + "px";
+}
+
+function handleCanvas() {
+    if (filling) {
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+}
+
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
+    canvas.addEventListener("click", handleCanvas);
 }
 
 function handleColor(event) {
-    ctx.strokeStyle = event.target.style.backgroundColor;
+    const brushColor = event.target.style.backgroundColor;
+    ctx.strokeStyle = brushColor;
+    ctx.fillStyle = brushColor;
+    drawColor.style.backgroundColor = brushColor;
+}
+
+function handleMode() {
+    if (!filling) {
+        mode.innerText = "Paint";
+        filling = true;
+    } else {
+        mode.innerText = "Fill";
+        filling = false;
+    }
+}
+
+function handleErase() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 Array.from(color).forEach(function (color) {
     color.addEventListener("click", handleColor);
 })
+
+if (range) {
+    range.addEventListener("input", handleRange);
+}
+
+if (mode) {
+    mode.addEventListener("click", handleMode);
+}
+
+if(erase) {
+    erase.addEventListener("click", handleErase);
+}

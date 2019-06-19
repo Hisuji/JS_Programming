@@ -61,3 +61,12 @@ body {
 .controls .controls_range {
     margin-bottom: 20px;
 }
+
+.controls_menuBar {
+    height: 52px;
+    
+}
+
+.controls_menuBar .select_color {
+    border-radius: 50%;
+}
