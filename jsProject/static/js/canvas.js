@@ -3,6 +3,7 @@ const color = document.getElementsByClassName('controls_color');
 const range = document.getElementById('brushRange');
 const mode = document.getElementById('jsMode');
 const erase = document.getElementById('jsErase');
+const save = document.getElementById('jsSave');
 
 const canvas = document.getElementById('jsCanvas');
 canvas.width = 700;
@@ -11,6 +12,8 @@ canvas.height = 500;
 const ctx = canvas.getContext('2d');
 ctx.strokeStyle = groupColors.firstElementChild.style.backgroundColor;
 ctx.lineWidth = range.value;
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const drawColor = document.querySelector('.select_color');
 drawColor.style.backgroundColor = groupColors.firstElementChild.style.backgroundColor;
@@ -58,12 +61,17 @@ function handleCanvas() {
     }
 }
 
+function handleContextmenu(event) {
+    event.preventDefault();
+}
+
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
     canvas.addEventListener("click", handleCanvas);
+    canvas.addEventListener("contextmenu", handleContextmenu);
 }
 
 function handleColor(event) {
@@ -87,6 +95,14 @@ function handleErase() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+function handleSave() {
+    const imageURL = canvas.toDataURL(); //The default format type is image/png.
+    const downloadLink = document.createElement('a');
+    downloadLink.href = imageURL;
+    downloadLink.download = "paint";
+    downloadLink.click();
+}
+
 Array.from(color).forEach(function (color) {
     color.addEventListener("click", handleColor);
 })
@@ -99,6 +115,10 @@ if (mode) {
     mode.addEventListener("click", handleMode);
 }
 
-if(erase) {
+if (erase) {
     erase.addEventListener("click", handleErase);
+}
+
+if (save) {
+    save.addEventListener("click", handleSave);
 }
